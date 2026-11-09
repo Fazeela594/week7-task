@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="CODIORA freelancing marketplace demo" />
+  <title>CODIORA — Freelancing Marketplace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" data-page="home"><span class="brand-mark">C</span><span>CODIORA<small>Our Code Builds Your Vision</small></span></a>
+      <div class="side-label">WORKSPACE</div>
+      <nav class="side-nav">
+        <button class="nav-link active" data-page="home"><span>⌂</span> Overview</button>
+        <button class="nav-link" data-page="marketplace"><span>⌕</span> Explore Services</button>
+        <button class="nav-link" data-page="jobs"><span>▤</span> Find Jobs</button>
+        <button class="nav-link" data-page="favorites"><span>♡</span> My Favorites <b id="favoriteCount" class="nav-count">0</b></button>
+        <button class="nav-link" data-page="dashboard"><span>▦</span> Dashboard</button>
+        <button class="nav-link" data-page="messages"><span>✉</span> Messages</button>
+      </nav>
+      <div class="side-label side-label-gap">MANAGE</div>
+      <nav class="side-nav">
+        <button class="nav-link" data-page="orders"><span>▣</span> Orders & Projects</button>
+        <button class="nav-link" data-page="notifications"><span>♧</span> Notifications <b id="notificationCount" class="nav-count">0</b></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="help-card"><div class="help-icon">✦</div><strong>Need a hand?</strong><p>Explore the marketplace and find the right talent for your next idea.</p><button data-page="marketplace">Explore now <span>→</span></button></div>
+        <button class="profile-mini" id="profileToggle"><span class="avatar avatar-purple">FM</span><span><b>Fazeela Manzoor</b><small>Client account</small></span><span class="dots">•••</span></button>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Open menu">☰</button>
+        <div class="breadcrumb"><span>Workspace</span><b>/</b><strong id="pageTitle">Overview</strong></div>
+        <div class="top-actions">
+          <label class="role-switch">View as <select id="roleSelect"><option value="client">Client</option><option value="freelancer">Freelancer</option></select></label>
+          <button class="icon-btn" data-page="notifications" aria-label="Notifications">♧<i class="online-dot"></i></button>
+          <button class="avatar avatar-purple top-avatar" id="topProfile">FM</button>
+        </div>
+      </header>
+
+      <section class="page active" id="page-home">
+        <div class="welcome-row">
+          <div><div class="eyebrow"><span class="eyebrow-dot"></span> YOUR CREATIVE WORKSPACE</div><h1>Build something <em>brilliant.</em></h1><p class="muted">Discover talented freelancers, manage projects, and bring your ideas to life.</p></div>
+          <button class="btn btn-primary" data-page="marketplace">Explore marketplace <span>↗</span></button>
+        </div>
+        <div class="hero-panel">
+          <div class="hero-copy"><span class="hero-kicker">THE RIGHT TALENT. THE RIGHT TIME.</span><h2>Your next big idea<br>starts <em>right here.</em></h2><p>Find skilled professionals ready to turn your vision into reality.</p><button class="btn btn-light" data-page="marketplace">Find a service <span>→</span></button></div>
+          <div class="hero-art"><div class="orb orb-one"></div><div class="orb orb-two"></div><div class="floating-card card-one"><span class="float-icon">✦</span><div><b>Creative minds</b><small>One marketplace</small></div></div><div class="floating-card card-two"><div class="mini-avatars"><i>AM</i><i>SK</i><i>ZA</i></div><div><b>Top talent</b><small>Ready to work</small></div></div><div class="hero-shape">C</div></div>
+        </div>
+        <div class="section-heading"><div><h2>Marketplace at a glance</h2><p class="muted">A quick look at the community</p></div><button class="text-btn" data-page="marketplace">Explore all services →</button></div>
+        <div class="stats-grid" id="homeStats"></div>
+        <div class="section-heading"><div><h2>Popular services</h2><p class="muted">Handpicked services to get you started</p></div><button class="text-btn" data-page="marketplace">View all →</button></div>
+        <div class="service-grid" id="homeServices"></div>
+      </section>
+
+      <section class="page" id="page-marketplace">
+        <div class="page-heading"><div><div class="eyebrow">DISCOVER YOUR NEXT PARTNER</div><h1>Explore services</h1><p class="muted">Find the skills you need to make it happen.</p></div><span class="result-pill" id="resultCount">0 services</span></div>
+        <div class="search-bar"><span>⌕</span><input id="searchInput" type="search" placeholder="Search services, freelancers or skills..." /><kbd>Enter</kbd></div>
+        <div class="market-layout">
+          <aside class="filter-panel">
+            <div class="filter-head"><h3>Filters</h3><button class="text-btn" id="clearFilters">Clear all</button></div>
+            <label class="filter-label">Category<select id="categoryFilter"><option value="all">All categories</option><option>Web Development</option><option>Graphic Design</option><option>Digital Marketing</option><option>Mobile App Development</option><option>Writing & Translation</option><option>AI & Data</option></select></label>
+            <div class="filter-label">Price range <div class="price-inputs"><input id="minPrice" type="number" min="0" placeholder="Min $" /><span>—</span><input id="maxPrice" type="number" min="0" placeholder="Max $" /></div></div>
+            <label class="filter-label">Minimum rating<select id="ratingFilter"><option value="0">Any rating</option><option value="4">4.0+ stars</option><option value="4.5">4.5+ stars</option><option value="4.8">4.8+ stars</option></select></label>
+            <label class="filter-label">Delivery time<select id="deliveryFilter"><option value="all">Any delivery</option><option value="3">Up to 3 days</option><option value="7">Up to 7 days</option><option value="14">Up to 14 days</option></select></label>
+            <label class="filter-label">Experience level<select id="experienceFilter"><option value="all">Any experience</option><option>Beginner</option><option>Intermediate</option><option>Expert</option></select></label>
+            <div class="filter-note"><span>✦</span><div><b>Smart discovery</b><small>Combine filters to narrow down your best matches.</small></div></div>
+          </aside>
+          <div class="results-area"><div class="results-toolbar"><span id="resultsLabel">Showing all services</span><label>Sort by <select id="sortFilter"><option value="popular">Most Popular</option><option value="low">Price: Low to High</option><option value="high">Price: High to Low</option><option value="rating">Highest Rating</option><option value="newest">Newest</option></select></label></div><div class="service-grid" id="serviceResults"></div></div>
+        </div>
+      </section>
+
+      <section class="page" id="page-jobs">
+        <div class="page-heading"><div><div class="eyebrow">OPPORTUNITIES FOR YOU</div><h1>Find your next job</h1><p class="muted">Explore projects posted by clients and send a proposal.</p></div><button class="btn btn-primary" id="postJobBtn">＋ Post a job</button></div>
+        <div class="search-bar"><span>⌕</span><input id="jobSearch" type="search" placeholder="Search jobs by title or skill..." /></div>
+        <div class="job-list" id="jobList"></div>
+      </section>
+
+      <section class="page" id="page-favorites">
+        <div class="page-heading"><div><div class="eyebrow">YOUR SHORTLIST</div><h1>My favorites</h1><p class="muted">Services you saved for later.</p></div><span class="result-pill" id="favResultCount">0 saved</span></div>
+        <div class="service-grid" id="favoriteResults"></div>
+      </section>
+
+      <section class="page" id="page-dashboard">
+        <div class="page-heading"><div><div class="eyebrow">YOUR WORKSPACE</div><h1 id="dashboardTitle">Client dashboard</h1><p class="muted" id="dashboardSubtitle">Keep your projects and activity organized.</p></div><span class="status-chip"><i></i> Account active</span></div>
+        <div class="stats-grid dashboard-stats" id="dashboardStats"></div>
+        <div class="dashboard-columns"><div class="content-card"><div class="card-heading"><div><h3 id="dashMainTitle">Your recent activity</h3><p class="muted">A quick overview of your marketplace activity.</p></div></div><div id="dashboardActivity"></div></div><div class="content-card"><div class="card-heading"><div><h3>Quick actions</h3><p class="muted">Jump back into your work.</p></div></div><div class="quick-actions"><button data-page="marketplace"><span>⌕</span><div><b>Explore services</b><small>Find the right freelancer</small></div><i>→</i></button><button data-page="favorites"><span>♡</span><div><b>View favorites</b><small>Your saved services</small></div><i>→</i></button><button data-page="orders"><span>▣</span><div><b>Manage projects</b><small>Track your active work</small></div><i>→</i></button><button data-page="messages"><span>✉</span><div><b>Open messages</b><small>Continue conversations</small></div><i>→</i></button></div></div></div>
+      </section>
+
+      <section class="page" id="page-orders">
+        <div class="page-heading"><div><div class="eyebrow">WORK IN PROGRESS</div><h1>Orders & projects</h1><p class="muted">Track orders, project progress, and delivery status.</p></div><button class="btn btn-primary" data-page="marketplace">＋ Start an order</button></div>
+        <div class="tabs"><button class="tab active" data-order-tab="all">All orders</button><button class="tab" data-order-tab="active">Active</button><button class="tab" data-order-tab="completed">Completed</button></div>
+        <div class="order-list" id="orderList"></div>
+      </section>
+
+      <section class="page" id="page-messages">
+        <div class="page-heading"><div><div class="eyebrow">STAY CONNECTED</div><h1>Messages</h1><p class="muted">Your conversations with clients and freelancers.</p></div></div>
+        <div class="content-card empty-message"><div class="empty-icon">✉</div><h3>No new messages</h3><p class="muted">When someone contacts you, your conversations will appear here.</p><button class="btn btn-primary" data-page="marketplace">Explore services</button></div>
+      </section>
+
+      <section class="page" id="page-notifications">
+        <div class="page-heading"><div><div class="eyebrow">WHAT'S HAPPENING</div><h1>Notifications</h1><p class="muted">Updates about your marketplace activity.</p></div><button class="text-btn" id="markRead">Mark all as read</button></div>
+        <div class="content-card" id="notificationList"></div>
+      </section>
+
+      <footer class="footer"><span>© 2026 CODIORA. All rights reserved.</span><span>Our Code Builds Your Vision.</span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast"></div>
+  <dialog id="detailDialog" class="modal"><button class="modal-close" data-close>×</button><div id="dialogContent"></div></dialog>
+  <dialog id="formDialog" class="modal"><button class="modal-close" data-close>×</button><div id="formContent"></div></dialog>
+  <script src="script.js"></script>
+</body>
+</html>
